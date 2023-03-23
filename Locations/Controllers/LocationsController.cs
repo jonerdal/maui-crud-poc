@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Locations.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class LocationsController : ControllerBase
 {
     private readonly ILocationsService _service;

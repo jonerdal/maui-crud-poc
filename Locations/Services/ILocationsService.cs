@@ -5,10 +5,10 @@ namespace Locations.Services
     public interface ILocationsService
     {
         void CreateLocation(Location location);
-        Location? GetLocation(Guid Id);
+        Location? GetLocation(Guid id);
         List<Location> GetAllLocations();
         void UpsertLocation(Location location);
-        void DeleteLocation(Guid Id);
+        void DeleteLocation(Guid id);
 
 
     }
