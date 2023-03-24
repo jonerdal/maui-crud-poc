@@ -7,7 +7,8 @@ namespace MauiFrontendApplication
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ManageLocationsPage), typeof(ManageLocationsPage));
+            Routing.RegisterRoute(nameof(ViewLocationPage), typeof(ViewLocationPage));
+            Routing.RegisterRoute(nameof(ManageLocationPage), typeof(ManageLocationPage));
         }
     }
 }

@@ -19,7 +19,8 @@ namespace MauiFrontendApplication
             //TODO fix this with client factory
             builder.Services.AddSingleton<ILocationsDataService, LocationsDataService>();
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddTransient<ManageLocationsPage>();
+            builder.Services.AddTransient<ViewLocationPage>();
+            builder.Services.AddTransient<ManageLocationPage>();
 
             return builder.Build();
         }

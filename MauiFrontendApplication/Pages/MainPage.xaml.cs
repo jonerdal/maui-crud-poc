@@ -29,7 +29,7 @@ namespace MauiFrontendApplication.Pages
             { nameof(LocationModel), new LocationModel() }
         };
 
-            await Shell.Current.GoToAsync(nameof(ManageLocationsPage), navigationParameter);
+            await Shell.Current.GoToAsync(nameof(ManageLocationPage), navigationParameter);
         }
 
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -42,7 +42,7 @@ namespace MauiFrontendApplication.Pages
                     { nameof(LocationModel), e.CurrentSelection.FirstOrDefault() as LocationModel }
                 };
 
-                await Shell.Current.GoToAsync(nameof(ManageLocationsPage), navigationParameter);
+                await Shell.Current.GoToAsync(nameof(ViewLocationPage), navigationParameter);
             }
             catch (Exception ex)
             {
