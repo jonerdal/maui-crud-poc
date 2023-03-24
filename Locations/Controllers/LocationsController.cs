@@ -34,9 +34,9 @@ public class LocationsController : ControllerBase
     {
         var locations = _service.GetAllLocations();
 
-        var locationsResponse = locations.Select(location => MapLocationResponse(location));
+        var locationsResponse = locations.Select(MapLocationResponse).ToList();
 
-        return Ok(locations);
+        return Ok(new GetLocationsResponse(locationsResponse));
     }
 
     [HttpGet("{id:guid}")]

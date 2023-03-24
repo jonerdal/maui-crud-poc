@@ -10,11 +10,11 @@ Initially, it will have a backend CRUD API and a MAUI frontend Android applicati
 Starting of, the design will be simple. The intent of this project is not to build a great looking application. It will start by simply being able to show and manage the entities persisted in the backend. The entities will be called locations, and are meant to represent a location on a map, however adding a map feature is far away and might very well not be implemented at all.
 
 ## Development path
-- Develop a basic CRUD API with in memory storage using **ASP.NET Core web API**.
-- Add persistent storage using **Entity Framework Core**.
-- Create simple Android application using **.NET MAUI**
-- Cleanup backend, implement ErrorOr **.NET**
-- Create DB migration **.Entity Framework Core**
+- Develop a basic CRUD API with in memory storage (**ASP.NET Core web API**).
+- Add persistent storage (**Entity Framework Core**).
+- Create simple Android application (**.NET MAUI**).
+- Cleanup backend, implement ErrorOr (**.NET**).
+- Create DB migration (**Entity Framework Core**).
 
 ## Potential further development
 - Add map in FE.
