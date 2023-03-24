@@ -18,8 +18,8 @@ namespace MauiFrontendApplication.DataServices
             //TODO this should be done with DI
             _httpClient = new HttpClient();
 
-            //Since running https locally on android is not super easy, we'll do http now since this is only for dev anyway.
-            _baseAddress = "http://localhost:5220";
+            //Using http for all since only dev, and not localhost if android
+            _baseAddress = DeviceInfo.Platform == DevicePlatform.Android ? "http://10.0.2.2:5220" : "http://localhost:5220";
             _url = $"{_baseAddress}/api/locations";
 
             //This should perhaps be handled globally and not not on class level.. 

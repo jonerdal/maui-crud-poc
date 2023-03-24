@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiFrontendApplication.Pages.MainPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add Location" Clicked="OnAddLocationClicked" />
+
+    </ContentPage.ToolbarItems>
     
     <CollectionView x:Name="collectionView"
                     SelectionMode="Single"
