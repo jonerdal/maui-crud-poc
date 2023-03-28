@@ -29,19 +29,26 @@ namespace MauiFrontendApplication.DataServices
             };
         }
 
-        public async Task CreateLocationAsync(LocationModel location)
+        public async Task<LocationModel> CreateLocationAsync(LocationModel location)
         {
+            LocationModel locationModel = default;
             var createRequest = new CreateLocationRequest(location.Name, location.Description);
             var content = new StringContent(JsonSerializer.Serialize(createRequest, _jsonSerializerOptions), Encoding.UTF8, "application/json");
             var response = await _httpClient.PostAsync(_url, content);
 
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 Debug.WriteLine("Successfully created location");
-            } else
+                var responseContent = await response.Content.ReadAsStringAsync();
+                var getLocationResponse = JsonSerializer.Deserialize<LocationResponse>(responseContent, _jsonSerializerOptions);
+                locationModel = new LocationModel { Id = getLocationResponse.Id, Name = getLocationResponse.Name, Description = getLocationResponse.Description };
+            }
+            else
             {
                 Debug.WriteLine($"Failed creating location: {response.StatusCode}");
             }
+
+            return locationModel;
         }
 
         public async Task DeleteLocationAsync(Guid id)

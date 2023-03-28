@@ -21,16 +21,24 @@ public partial class ManageLocationPage : ContentPage
     }
 
     public ManageLocationPage(ILocationsDataService dataService)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         BindingContext = this;
         _dataService = dataService;
     }
 
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
-        Debug.WriteLine("---> Update an Item");
-        await _dataService.UpsertLocationAsync(LocationModel);
+        if (IsNew(LocationModel))
+        {
+            Debug.WriteLine("---> Create an Item");
+            LocationModel = await _dataService.CreateLocationAsync(LocationModel);
+        }
+        else
+        {
+            Debug.WriteLine("---> Update an Item");
+            await _dataService.UpsertLocationAsync(LocationModel);
+        }
 
         //TODO check success before navigating back
         var navigationParameter = new Dictionary<string, object>
@@ -44,14 +52,26 @@ public partial class ManageLocationPage : ContentPage
 
     async void OnCancelButtonClicked(object sender, EventArgs e)
     {
-        //We should use a view model for this view, but since we are not, let's fetch from db to get unmodified model
-        var location = await _dataService.GetLocationAsync(LocationModel.Id);
-
-        var navigationParameter = new Dictionary<string, object>
+        if (ManageLocationPage.IsNew(LocationModel))
         {
-            { nameof(LocationModel), location }
-        };
+            await Shell.Current.GoToAsync("../..");
+        }
+        else
+        {
+            //We should use a view model for this view, but since we are not, let's fetch from db to get unmodified model
+            var location = await _dataService.GetLocationAsync(LocationModel.Id);
 
-        await Shell.Current.GoToAsync("..", navigationParameter);
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { nameof(LocationModel), location }
+            };
+
+            await Shell.Current.GoToAsync("..", navigationParameter);
+        }
+    }
+
+    private static bool IsNew(LocationModel locationModel)
+    {
+        return locationModel.Id == Guid.Empty;
     }
 }
