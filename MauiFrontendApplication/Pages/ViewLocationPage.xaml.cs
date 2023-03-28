@@ -42,7 +42,11 @@ public partial class ViewLocationPage : ContentPage
     {
         Debug.WriteLine("OnDeleteLocationClicked clicked");
 
-        await _dataService.DeleteLocationAsync(LocationModel.Id);
-        await Shell.Current.GoToAsync("..");
+        var success = await _dataService.DeleteLocationAsync(LocationModel.Id);
+
+        if (success)
+            await Shell.Current.GoToAsync("..");
+        else
+            await DisplayAlert("Deletion failed", "Failed to delete location", "OK");
     }
 }

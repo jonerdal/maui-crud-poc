@@ -29,30 +29,37 @@ public partial class ManageLocationPage : ContentPage
 
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
+        bool success;
         if (IsNew(LocationModel))
         {
             Debug.WriteLine("---> Create an Item");
             LocationModel = await _dataService.CreateLocationAsync(LocationModel);
+            success = LocationModel != default;
         }
         else
         {
             Debug.WriteLine("---> Update an Item");
-            await _dataService.UpsertLocationAsync(LocationModel);
+            success = await _dataService.UpsertLocationAsync(LocationModel);
         }
 
-        //TODO check success before navigating back
-        var navigationParameter = new Dictionary<string, object>
+        if(success)
         {
-            { nameof(LocationModel), LocationModel }
-        };
+            var navigationParameter = new Dictionary<string, object>
+            {
+                { nameof(LocationModel), LocationModel }
+            };
 
-        await Shell.Current.GoToAsync("..", navigationParameter);
+            await Shell.Current.GoToAsync("..", navigationParameter);
+        } else
+        {
+            await DisplayAlert("Save failed", "Failed to save location", "OK");
+        }
 
     }
 
     async void OnCancelButtonClicked(object sender, EventArgs e)
     {
-        if (ManageLocationPage.IsNew(LocationModel))
+        if (IsNew(LocationModel))
         {
             await Shell.Current.GoToAsync("../..");
         }

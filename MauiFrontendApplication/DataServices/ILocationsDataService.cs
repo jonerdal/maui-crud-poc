@@ -7,8 +7,8 @@ namespace MauiFrontendApplication.DataServices
         Task<List<LocationModel>> GetLocationsAsync();
         Task<LocationModel> GetLocationAsync(Guid id);
         Task<LocationModel> CreateLocationAsync(LocationModel location);
-        Task UpsertLocationAsync(LocationModel location);
-        Task DeleteLocationAsync(Guid id);
+        Task<bool> UpsertLocationAsync(LocationModel location);
+        Task<bool> DeleteLocationAsync(Guid id);
     }
 }
 
