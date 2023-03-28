@@ -58,6 +58,24 @@ namespace MauiFrontendApplication.DataServices
             }
         }
 
+        public async Task<LocationModel> GetLocationAsync(Guid id)
+        {
+            var response = await _httpClient.GetAsync($"{_url}/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+                var getLocationResponse = JsonSerializer.Deserialize<LocationResponse>(content, _jsonSerializerOptions);
+                return new LocationModel { Id = getLocationResponse.Id, Name = getLocationResponse.Name, Description = getLocationResponse.Description };
+            }
+            else
+            {
+                Debug.WriteLine($"Failed deleting location: {response.StatusCode}");
+            }
+
+            return default;
+        }
+
         public async Task<List<LocationModel>> GetLocationsAsync()
         {
             var locations = new List<LocationModel>();
@@ -85,7 +103,7 @@ namespace MauiFrontendApplication.DataServices
         {
             var upsertRequest = new UpsertLocationRequest(location.Name, location.Description);
             var content = new StringContent(JsonSerializer.Serialize(upsertRequest, _jsonSerializerOptions), Encoding.UTF8, "application/json");
-            var response = await _httpClient.PostAsync($"{_url}/{location.Id}", content);
+            var response = await _httpClient.PutAsync($"{_url}/{location.Id}", content);
 
             if (response.IsSuccessStatusCode)
             {

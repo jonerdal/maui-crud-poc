@@ -3,11 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiFrontendApplication.Pages.ManageLocationPage"
              Title="Manage Location">
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Manage location page"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid RowDefinitions="*,Auto" ColumnDefinitions="*,*" ColumnSpacing="5">
+        <TableView Intent="Data" Grid.Row="0" Grid.ColumnSpan="2">
+            <TableRoot>
+                <TableSection Title="Title">
+                    <EntryCell Text="{Binding Path=LocationModel.Name}" Placeholder="Title" />
+                </TableSection>
+                <TableSection Title="Description">
+                    <EntryCell Text="{Binding Path=LocationModel.Description}" Placeholder="Description" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+        <Button Text="Save" Grid.Row="1" Grid.Column="0" Clicked="OnSaveButtonClicked" Margin="20,5"/>
+        <Button Text="Cancel" Grid.Row="1" Grid.Column="1" Clicked="OnCancelButtonClicked" Margin="20,5"/>
+    </Grid>
 </ContentPage>

@@ -25,9 +25,9 @@ namespace MauiFrontendApplication.Pages
             Debug.WriteLine("OnAddLocationClicked clicked");
 
             var navigationParameter = new Dictionary<string, object>
-        {
-            { nameof(LocationModel), new LocationModel() }
-        };
+            {
+                { nameof(LocationModel), new LocationModel() }
+            };
 
             await Shell.Current.GoToAsync(nameof(ManageLocationPage), navigationParameter);
         }
