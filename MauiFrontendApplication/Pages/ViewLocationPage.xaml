@@ -9,14 +9,17 @@
         <ToolbarItem Text="Delete Location" Clicked="OnDeleteLocationClicked" />
     </ContentPage.ToolbarItems>
 
-    <VerticalStackLayout>
+    <VerticalStackLayout Spacing="10" Padding="10">
         <Label 
-            Text="{Binding LocationModel.Name}"
+            Text="{Binding Path = LocationModel.Name}"
+            SemanticProperties.HeadingLevel="Level1"
+            FontSize="32"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
 
         <Label 
-            Text="{Binding LocationModel.Description}"
+            Text="{Binding Path = LocationModel.Description}"
+            FontSize="18"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
     </VerticalStackLayout>

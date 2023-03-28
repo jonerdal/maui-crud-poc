@@ -8,11 +8,20 @@ namespace MauiFrontendApplication.Pages;
 public partial class ViewLocationPage : ContentPage
 {
     private readonly ILocationsDataService _dataService;
-    public LocationModel LocationModel { get; set; }
+    private LocationModel _locationModel;
+    public LocationModel LocationModel
+    {
+        get => _locationModel;
+        set
+        {
+            _locationModel = value;
+            OnPropertyChanged();
+        }
+    }
 
     public ViewLocationPage(ILocationsDataService dataService)
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         _dataService = dataService;
         BindingContext = this;
     }
@@ -34,5 +43,6 @@ public partial class ViewLocationPage : ContentPage
         Debug.WriteLine("OnDeleteLocationClicked clicked");
 
         await _dataService.DeleteLocationAsync(LocationModel.Id);
+        await Shell.Current.GoToAsync("..");
     }
 }

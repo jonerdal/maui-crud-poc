@@ -5,6 +5,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add Location" Clicked="OnAddLocationClicked" />
+        <ToolbarItem Text="Refresh locations" Clicked="OnRefreshClicked" />
 
     </ContentPage.ToolbarItems>
     
@@ -19,24 +20,9 @@
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-                    
-                    <Label Grid.Row="0" 
+                <Label Grid.Row="0" 
                            Text="{Binding Name}" 
                            FontSize="Medium" />
-                    
-                    <Label Grid.Row="1" 
-                           Text="{Binding Description}" 
-                           FontSize="Small" />
-                    
-                </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>

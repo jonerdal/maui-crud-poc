@@ -32,6 +32,12 @@ namespace MauiFrontendApplication.Pages
             await Shell.Current.GoToAsync(nameof(ManageLocationPage), navigationParameter);
         }
 
+        async void OnRefreshClicked(object sender, EventArgs e)
+        {
+            Debug.WriteLine("refreshing data");
+            collectionView.ItemsSource = await _dataService.GetLocationsAsync();
+        }
+
         async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
