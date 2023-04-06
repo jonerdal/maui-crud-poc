@@ -1,4 +1,4 @@
-_.NET | MAUI | ASP.NET Core | Entity Framework Core | API_
+_.NET | MAUI | ASP.NET Core | Entity Framework Core | API | SQLite_
 
 ## Introduction
 This project is meant as a learning playground. One purpose is of course to explore .NET MAUI, but also allowing me to dig deeper into other areas. The project is in no way intended for production purposes. 
